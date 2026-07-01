@@ -176,6 +176,12 @@ function afficherTableauDeBord() {
 }
 
 function afficherPage(page) {
+    if (page === 'deconnexion') {
+        localStorage.removeItem('adoptantSession');
+        window.location.href = 'login.html';
+        return;
+    }
+
     selecteurs.champRecherche.value = '';
     etat.page = page;
     afficherMenuActif(page);
@@ -841,7 +847,27 @@ function initialiserEvenements() {
     }
 }
 
+function requireAdmin() {
+    const raw = localStorage.getItem('adoptantSession');
+    if (!raw) {
+        window.location.href = 'login.html';
+        return false;
+    }
+    try {
+        const session = JSON.parse(raw);
+        if (!session || session.role !== 'admin') {
+            window.location.href = 'login.html';
+            return false;
+        }
+    } catch (e) {
+        window.location.href = 'login.html';
+        return false;
+    }
+    return true;
+}
+
 async function demarrerAdmin() {
+    if (!requireAdmin()) return;
     await chargerDonnees();
     initialiserEvenements();
     afficherPage(etat.page);

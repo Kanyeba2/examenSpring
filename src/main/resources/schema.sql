@@ -51,6 +51,7 @@ CREATE TABLE adoptant (
     nom VARCHAR(100) NOT NULL,
     prenom VARCHAR(100) NOT NULL,
     email VARCHAR(150) NOT NULL UNIQUE,
+    mot_de_passe VARCHAR(255) NOT NULL,
     telephone VARCHAR(30),
     adresse VARCHAR(255),
     profession VARCHAR(100),
@@ -116,10 +117,11 @@ INSERT INTO animal (nom, age, sexe, description, statut, photo_url, id_type_anim
 ('Zelda', 2, 'femelle', 'Tortue terrestre calme nécessitant un environnement chauffé.', 'disponible', 'https://example.com/images/zelda.jpg', 5);
 
 -- Insertion des adoptants
-INSERT INTO adoptant (nom, prenom, email, telephone, adresse, profession, role) VALUES
-('Dupont', 'Alice', 'alice.dupont@example.com', '0601020304', '12 rue des Fleurs, Paris', 'Professeur', 'adoptant'),
-('Martin', 'Lucas', 'lucas.martin@example.com', '0605060708', '8 avenue Victor Hugo, Lyon', 'Ingénieur', 'adoptant'),
-('Nguyen', 'Mai', 'mai.nguyen@example.com', '0612345678', '5 boulevard Saint-Michel, Paris', 'Étudiante', 'adoptant');
+INSERT INTO adoptant (nom, prenom, email, mot_de_passe, telephone, adresse, profession, role) VALUES
+('Dupont', 'Alice', 'alice.dupont@example.com', 'alice123', '0601020304', '12 rue des Fleurs, Paris', 'Professeur', 'adoptant'),
+('Martin', 'Lucas', 'lucas.martin@example.com', 'lucas123', '0605060708', '8 avenue Victor Hugo, Lyon', 'Ingénieur', 'adoptant'),
+('Nguyen', 'Mai', 'mai.nguyen@example.com', 'mai123', '0612345678', '5 boulevard Saint-Michel, Paris', 'Étudiante', 'adoptant'),
+('Admin', 'Shelter', 'admin@shelter.com', 'Admin123!', '0600000000', '1 rue du Refuge, Paris', 'Administrateur', 'admin');
 
 -- Insertion des demandes d'adoption
 INSERT INTO demande_adoption (id_animal, id_adoptant, date_demande, statut, message, date_decision) VALUES

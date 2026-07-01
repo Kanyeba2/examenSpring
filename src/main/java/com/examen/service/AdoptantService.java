@@ -35,7 +35,25 @@ public class AdoptantService {
         if (adoptant.getEmail() == null || adoptant.getEmail().isEmpty()) {
             throw new IllegalArgumentException("L'email de l'adoptant est requis");
         }
+        if (adoptant.getMotDePasse() == null || adoptant.getMotDePasse().isEmpty()) {
+            throw new IllegalArgumentException("Le mot de passe est requis");
+        }
         return adoptantDepot.creer(adoptant);
+    }
+
+    public Adoptant authentifier(String email, String motDePasse) {
+        if (email == null || email.isEmpty() || motDePasse == null || motDePasse.isEmpty()) {
+            throw new IllegalArgumentException("Email et mot de passe sont requis");
+        }
+        Adoptant adoptant = adoptantDepot.obtenirParEmail(email);
+        if (adoptant == null) {
+            return null;
+        }
+        if (motDePasse.equals(adoptant.getMotDePasse())) {
+            adoptant.setMotDePasse(null); // Ne pas exposer le mot de passe
+            return adoptant;
+        }
+        return null;
     }
 
     public boolean mettre_a_jour(Adoptant adoptant) {

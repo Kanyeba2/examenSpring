@@ -48,6 +48,22 @@ public class AdoptantControleur {
         }
     }
 
+    @PostMapping("/login")
+    public ResponseEntity<?> login(@RequestBody Adoptant credentials) {
+        try {
+            Adoptant adoptant = adoptantService.authentifier(credentials.getEmail(), credentials.getMotDePasse());
+            if (adoptant == null) {
+                return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Email ou mot de passe invalide");
+            }
+            if (!"admin".equalsIgnoreCase(adoptant.getRole())) {
+                return ResponseEntity.status(HttpStatus.FORBIDDEN).body("Accès administrateur requis");
+            }
+            return ResponseEntity.ok(adoptant);
+        } catch (IllegalArgumentException e) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Erreur : " + e.getMessage());
+        }
+    }
+
     @PutMapping("/{id}")
     public ResponseEntity<String> mettre_a_jour(@PathVariable Integer id, @RequestBody Adoptant adoptant) {
         adoptant.setIdAdoptant(id);

@@ -22,12 +22,12 @@ public class AdoptantDepot {
     }
 
     public List<Adoptant> obtenirTout() {
-        String sql = "SELECT id_adoptant AS idAdoptant, nom, prenom, email, telephone, adresse, profession, role FROM adoptant";
+        String sql = "SELECT id_adoptant AS idAdoptant, nom, prenom, email, mot_de_passe AS motDePasse, telephone, adresse, profession, role FROM adoptant";
         return jdbcTemplate.query(sql, adoptantRowMapper);
     }
 
     public Adoptant obtenirParId(Integer idAdoptant) {
-        String sql = "SELECT id_adoptant AS idAdoptant, nom, prenom, email, telephone, adresse, profession, role FROM adoptant WHERE id_adoptant = ?";
+        String sql = "SELECT id_adoptant AS idAdoptant, nom, prenom, email, mot_de_passe AS motDePasse, telephone, adresse, profession, role FROM adoptant WHERE id_adoptant = ?";
         try {
             return jdbcTemplate.queryForObject(sql, new Object[]{idAdoptant}, adoptantRowMapper);
         } catch (Exception e) {
@@ -35,12 +35,22 @@ public class AdoptantDepot {
         }
     }
 
+    public Adoptant obtenirParEmail(String email) {
+        String sql = "SELECT id_adoptant AS idAdoptant, nom, prenom, email, mot_de_passe AS motDePasse, telephone, adresse, profession, role FROM adoptant WHERE email = ?";
+        try {
+            return jdbcTemplate.queryForObject(sql, new Object[]{email}, adoptantRowMapper);
+        } catch (Exception e) {
+            return null;
+        }
+    }
+
     public boolean creer(Adoptant adoptant) {
-        String sql = "INSERT INTO adoptant (nom, prenom, email, telephone, adresse, profession, role) VALUES (?, ?, ?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO adoptant (nom, prenom, email, mot_de_passe, telephone, adresse, profession, role) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
         return jdbcTemplate.update(sql,
                 adoptant.getNom(),
                 adoptant.getPrenom(),
                 adoptant.getEmail(),
+                adoptant.getMotDePasse(),
                 adoptant.getTelephone(),
                 adoptant.getAdresse(),
                 adoptant.getProfession(),
@@ -48,11 +58,12 @@ public class AdoptantDepot {
     }
 
     public boolean mettre_a_jour(Adoptant adoptant) {
-        String sql = "UPDATE adoptant SET nom = ?, prenom = ?, email = ?, telephone = ?, adresse = ?, profession = ?, role = ? WHERE id_adoptant = ?";
+        String sql = "UPDATE adoptant SET nom = ?, prenom = ?, email = ?, mot_de_passe = ?, telephone = ?, adresse = ?, profession = ?, role = ? WHERE id_adoptant = ?";
         return jdbcTemplate.update(sql,
                 adoptant.getNom(),
                 adoptant.getPrenom(),
                 adoptant.getEmail(),
+                adoptant.getMotDePasse(),
                 adoptant.getTelephone(),
                 adoptant.getAdresse(),
                 adoptant.getProfession(),
