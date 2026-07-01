@@ -5,7 +5,7 @@ const state = {
 };
 
 const $ = id => document.getElementById(id);
-const valueOf = id => $(id)?.value?.trim() ?? '';
+const valueOf = id => $(id) ? .value ? .trim() ? ? '';
 const show = id => { const el = $(id); if (el) el.classList.remove('hidden'); };
 const hide = id => { const el = $(id); if (el) el.classList.add('hidden'); };
 
@@ -308,10 +308,14 @@ function bindActions() {
         const animal = state.animaux.find(a => a.idAnimal === idAnimal);
         if (animal) openRequestModal(animal);
     });
-    $('fermer-modal') ? .addEventListener('click', () => { resetRequestModal();
-        closeModal('modal-demande'); });
-    $('annuler-modal') ? .addEventListener('click', () => { resetRequestModal();
-        closeModal('modal-demande'); });
+    $('fermer-modal') ? .addEventListener('click', () => {
+        resetRequestModal();
+        closeModal('modal-demande');
+    });
+    $('annuler-modal') ? .addEventListener('click', () => {
+        resetRequestModal();
+        closeModal('modal-demande');
+    });
     $('fermer-modal-adoptant') ? .addEventListener('click', () => closeModal('modal-adoptant'));
     $('annuler-modal-adoptant') ? .addEventListener('click', () => closeModal('modal-adoptant'));
     $('adoptant-se-connecter') ? .addEventListener('click', async() => {

@@ -61,6 +61,8 @@ examenSpring/
 │   │           ├── administration.js
 │   │           ├── administration.css
 │   │           ├── app.js
+│   │           ├── login.html
+│   │           ├── login.js
 │   │           └── styles.css
 └── uploads/
 ```
@@ -160,6 +162,9 @@ DELETE /api/suivis/{id}
 ## 📌 Points importants
 
 - `/` redirige vers `accueil.html` via `RootController`
+- L’admin doit se connecter via `login.html` avant d’accéder à `administration.html`.
+- La session d’admin est stockée dans `localStorage` sous `adoptantSession`.
+- `administration.html` est protégée côté frontend par un contrôle `role === 'admin'`.
 - Les fichiers uploadés sont exposés via `/uploads/**` grâce à `UploadConfig`
 - Le champ d’upload doit s’appeler `file`
 - Le dossier `uploads/` doit exister et être accessible en écriture
