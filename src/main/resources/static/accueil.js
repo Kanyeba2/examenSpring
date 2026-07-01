@@ -5,7 +5,7 @@ const state = {
 };
 
 const $ = id => document.getElementById(id);
-const valueOf = id => $(id) ? .value ? .trim() ? ? '';
+const valueOf = id => $(id)?.value?.trim() ?? '';
 const show = id => { const el = $(id); if (el) el.classList.remove('hidden'); };
 const hide = id => { const el = $(id); if (el) el.classList.add('hidden'); };
 
