@@ -5,7 +5,7 @@ const state = {
 };
 
 const $ = id => document.getElementById(id);
-const valueOf = id => $(id)?.value?.trim() ?? '';
+const valueOf = id => $(id) ? .value ? .trim() ? ? '';
 const show = id => { const el = $(id); if (el) el.classList.remove('hidden'); };
 const hide = id => { const el = $(id); if (el) el.classList.add('hidden'); };
 
@@ -68,7 +68,7 @@ function renderFilters(animaux) {
         const select = $(field.id);
         if (!select) return;
         const values = [...new Set(animaux.map(item => item[field.key]).filter(Boolean))].sort((a, b) => String(a).localeCompare(String(b), 'fr', { numeric: true }));
-        const placeholder = select.firstElementChild?.textContent || '-- Choisir --';
+        const placeholder = select.firstElementChild ? .textContent || '-- Choisir --';
         select.innerHTML = `<option value="">${placeholder}</option>` + values.map(value => `<option value="${value}">${value}</option>`).join('');
     });
 }
@@ -239,7 +239,7 @@ function renderNoAdoptantPanel() {
     }
     const ouvrirBtn = $('ouvrir-modal-adoptant');
     if (ouvrirBtn) {
-        ouvrirBtn.addEventListener('click', async () => {
+        ouvrirBtn.addEventListener('click', async() => {
             await loadAdoptants();
             openModal('modal-adoptant');
         });
@@ -257,9 +257,9 @@ async function refreshPanels() {
     const demandes = await fetchJson('/api/demandes');
     const mes = demandes.filter(d => d.idAdoptant === state.currentAdoptant.idAdoptant);
     if (mesDemandesBox) {
-        mesDemandesBox.innerHTML = mes.length === 0
-            ? '<div>Aucune demande envoyée.</div>'
-            : mes.map(d => `
+        mesDemandesBox.innerHTML = mes.length === 0 ?
+            '<div>Aucune demande envoyée.</div>' :
+            mes.map(d => `
                 <div class="demande-row">
                     <div>${d.nomAnimal || 'Animal'}</div>
                     <div>${new Date(d.dateDemande).toLocaleDateString()}</div>
@@ -270,27 +270,29 @@ async function refreshPanels() {
 
     if (monAdoptionBox) {
         const adoptee = mes.find(d => d.statut && d.statut.toLowerCase().includes('accep'));
-        monAdoptionBox.innerHTML = adoptee
-            ? `<div><strong>${adoptee.nomAnimal}</strong><div>Adopté — ${new Date(adoptee.dateDecision || adoptee.dateDemande).toLocaleDateString()}</div></div>`
-            : 'Aucune adoption en cours.';
+        monAdoptionBox.innerHTML = adoptee ?
+            `<div><strong>${adoptee.nomAnimal}</strong><div>Adopté — ${new Date(adoptee.dateDecision || adoptee.dateDemande).toLocaleDateString()}</div></div>` :
+            'Aucune adoption en cours.';
     }
 }
 
 function bindActions() {
-    $('btn-rechercher')?.addEventListener('click', applyFiltre);
-    $('recherche')?.addEventListener('keyup', e => { if (e.key === 'Enter') applyFiltre(); });
-    $('grille-animaux')?.addEventListener('click', event => {
+    $('btn-rechercher') ? .addEventListener('click', applyFiltre);
+    $('recherche') ? .addEventListener('keyup', e => { if (e.key === 'Enter') applyFiltre(); });
+    $('grille-animaux') ? .addEventListener('click', event => {
         const button = event.target.closest('.button-demande');
         if (!button) return;
         const idAnimal = parseInt(button.dataset.id, 10);
         const animal = state.animaux.find(a => a.idAnimal === idAnimal);
         if (animal) openRequestModal(animal);
     });
-    $('fermer-modal')?.addEventListener('click', () => { resetRequestModal(); closeModal('modal-demande'); });
-    $('annuler-modal')?.addEventListener('click', () => { resetRequestModal(); closeModal('modal-demande'); });
-    $('fermer-modal-adoptant')?.addEventListener('click', () => closeModal('modal-adoptant'));
-    $('annuler-modal-adoptant')?.addEventListener('click', () => closeModal('modal-adoptant'));
-    $('adoptant-se-connecter')?.addEventListener('click', async () => {
+    $('fermer-modal') ? .addEventListener('click', () => { resetRequestModal();
+        closeModal('modal-demande'); });
+    $('annuler-modal') ? .addEventListener('click', () => { resetRequestModal();
+        closeModal('modal-demande'); });
+    $('fermer-modal-adoptant') ? .addEventListener('click', () => closeModal('modal-adoptant'));
+    $('annuler-modal-adoptant') ? .addEventListener('click', () => closeModal('modal-adoptant'));
+    $('adoptant-se-connecter') ? .addEventListener('click', async() => {
         const id = parseInt(valueOf('adoptant-select'), 10);
         if (!id) {
             alert('Sélectionnez un adoptant');
@@ -299,8 +301,8 @@ function bindActions() {
         await setCurrentAdoptant(id);
         closeModal('modal-adoptant');
     });
-    $('creer-modal-adoptant')?.addEventListener('click', createAdoptant);
-    $('envoyer-demande')?.addEventListener('click', envoyerDemande);
+    $('creer-modal-adoptant') ? .addEventListener('click', createAdoptant);
+    $('envoyer-demande') ? .addEventListener('click', envoyerDemande);
 }
 
 function init() {
