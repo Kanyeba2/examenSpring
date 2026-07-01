@@ -138,7 +138,12 @@ public class AnimalControleur {
         String filename = UUID.randomUUID().toString() + "." + extension;
         Path uploadDirectory = Paths.get("uploads").toAbsolutePath().normalize();
         try {
+            // Ensure uploads directory exists
             Files.createDirectories(uploadDirectory);
+            if (!Files.isWritable(uploadDirectory)) {
+                return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+                        .body("Le dossier uploads n'est pas accessible en écriture");
+            }
             Path destination = uploadDirectory.resolve(filename);
             try (InputStream inputStream = file.getInputStream()) {
                 Files.copy(inputStream, destination, StandardCopyOption.REPLACE_EXISTING);
