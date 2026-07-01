@@ -1,0 +1,127 @@
+<!doctype html>
+<html lang="fr">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Adopte-moi - Accueil</title>
+    <link rel="stylesheet" href="accueil.css">
+</head>
+
+<body>
+    <header class="site-header">
+        <div class="container header-inner">
+            <div class="brand">
+                <h1>Adopte‑moi</h1>
+            </div>
+            <nav class="top-nav">
+                <a href="#">Accueil</a>
+                <a href="#">Animaux</a>
+                <a href="#">À propos</a>
+            </nav>
+            <div class="user-actions">Mon profil</div>
+        </div>
+    </header>
+
+    <main class="container main-grid">
+        <section class="hero">
+            <div class="hero-left">
+                <h2>Bonjour ! Trouvez un compagnon.</h2>
+                <p>Parcourez les animaux disponibles et soumettez une demande d'adoption.</p>
+                <div class="recherche-barre">
+                    <input id="recherche" placeholder="Rechercher un animal (nom, espèce, race...)" />
+                    <div class="filtres">
+                        <select id="filtre-espece"><option value="">Espèce</option></select>
+                        <select id="filtre-age"><option value="">Âge</option></select>
+                        <select id="filtre-taille"><option value="">Taille</option></select>
+                        <select id="filtre-lieu"><option value="">Lieu</option></select>
+                        <button id="btn-rechercher" class="button-rechercher">Rechercher</button>
+                    </div>
+                </div>
+            </div>
+            <div class="hero-right">
+                <img src="/static/placeholder-hero.png" alt="chien" />
+            </div>
+        </section>
+
+        <section class="content">
+            <div class="main-col">
+                <h3>Animaux à adopter</h3>
+                <div id="grille-animaux" class="grille-animaux">
+                    <!-- cartes insérées ici -->
+                </div>
+            </div>
+            <aside class="side-col">
+                <div class="panel" id="panel-mes-demandes">
+                    <h4>Mes demandes</h4>
+                    <div id="mes-demandes-list">Aucune donnée utilisateur. Connectez-vous pour voir vos demandes.</div>
+                </div>
+                <div class="panel" id="panel-mon-adoption">
+                    <h4>Mon adoption</h4>
+                    <div id="mon-adoption">Aucune adoption en cours.</div>
+                </div>
+            </aside>
+        </section>
+    </main>
+
+    <!-- Modal création / connexion adoptant -->
+    <div id="modal-adoptant" class="modal-overlay hidden">
+        <div class="modal-contenu">
+            <div class="modal-entete">
+                <h2>Se connecter / Créer un profil</h2>
+                <button class="bouton-fermer-modal" id="fermer-modal-adoptant">✕</button>
+            </div>
+            <div class="form-grille">
+                <div style="grid-column:1/-1">
+                    <label>Sélectionner un profil existant</label>
+                    <div style="display:flex;gap:8px">
+                        <select id="adoptant-select" style="flex:1"><option value="">-- Choisir un adoptant --</option></select>
+                        <button id="adoptant-se-connecter" class="bouton-action">Se connecter</button>
+                    </div>
+                </div>
+
+                <div style="grid-column:1/-1; border-top:1px solid var(--border); padding-top:12px">Créer un nouveau profil</div>
+                <label>Nom<input id="adoptant-nom" type="text" /></label>
+                <label>Prénom<input id="adoptant-prenom" type="text" /></label>
+                <label>Email<input id="adoptant-email" type="email" /></label>
+                <label style="grid-column:1/-1">Téléphone<input id="adoptant-telephone" type="text" /></label>
+            </div>
+            <div class="modal-actions">
+                <button class="bouton-action bouton-secondaire" id="annuler-modal-adoptant">Annuler</button>
+                <button class="bouton-action bouton-primaire" id="creer-modal-adoptant">Créer</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal de demande -->
+    <div id="modal-demande" class="modal-overlay hidden">
+        <div class="modal-contenu">
+            <div class="modal-entete">
+                <h2>Demande d'adoption</h2>
+                <button class="bouton-fermer-modal" id="fermer-modal">✕</button>
+            </div>
+            <div class="form-grille">
+                <div>
+                    <label>Animal</label>
+                    <input id="modal-animal" disabled />
+                </div>
+                <div>
+                    <label>Adoptant</label>
+                    <select id="modal-adoptant"></select>
+                </div>
+                <div style="grid-column: 1 / -1;">
+                    <label>Message</label>
+                    <textarea id="modal-message" rows="4" placeholder="Pourquoi souhaitez-vous adopter cet animal ?"></textarea>
+                </div>
+            </div>
+            <div class="modal-actions">
+                <button class="bouton-action bouton-secondaire" id="annuler-modal">Annuler</button>
+                <button class="bouton-action bouton-primaire" id="envoyer-demande">Envoyer la demande</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="accueil.js"></script>
+</body>
+
+</html>

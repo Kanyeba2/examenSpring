@@ -1,0 +1,53 @@
+# Maven
+target/
+pom.xml.tag
+pom.xml.releaseBackup
+pom.xml.versionsBackup
+pom.xml.next
+release.properties
+dependency-reduced-pom.xml
+.flattened-pom.xml
+*.releaseBackup
+
+# IDE
+.idea/
+*.iml
+*.iws
+*.ipr
+.classpath
+.project
+.settings/
+*.swp
+*.swo
+*~
+.vscode/
+.DS_Store
+
+# Application
+*.log
+logs/
+*.class
+*.jar
+*.war
+*.nar
+*.ear
+*.zip
+*.tar.gz
+*.rar
+
+# Dependencies
+!/.mvn/wrapper/maven-wrapper.jar
+.mvn/timing.properties
+.mvn/timing.properties.lock
+
+# Build
+build/
+dist/
+
+
+
+
+
+# Node (if used)
+node_modules/
+npm-debug.log

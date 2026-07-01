@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Adopte-moi - Panneau d'administration</title>
+    <link rel="stylesheet" href="administration.css" />
+</head>
+
+<body>
+    <div class="application">
+        <aside class="barre-laterale">
+            <div class="logo-gauche">
+                <div class="logo-symbole">AM</div>
+                <div>
+                    <div class="logo-titre">Adopte-moi</div>
+                    <div class="logo-sous-titre">Panneau d'administration</div>
+                </div>
+            </div>
+
+            <nav class="menu-lateral">
+                <div class="section-menu">
+                    <div class="section-titre">GESTION</div>
+                    <button class="lien-menu actif" data-page="tableauDeBord">Tableau de bord</button>
+                    <button class="lien-menu" data-page="animaux">Animaux</button>
+                    <button class="lien-menu" data-page="demandes">Demandes d'adoption</button>
+                    <button class="lien-menu" data-page="adoptants">Adoptants</button>
+                    <button class="lien-menu" data-page="suivi">Suivi post-adoption</button>
+                </div>
+                <div class="section-menu section-bas">
+                    <div class="section-titre">PARAMÈTRES</div>
+                    <button class="lien-menu" data-page="types">Types d'animaux</button>
+                    <button class="lien-menu" data-page="deconnexion">Déconnexion</button>
+                </div>
+            </nav>
+        </aside>
+
+        <div class="contenu-principal">
+            <header class="entete-principale">
+                <button class="bouton-menu" id="bouton-menu">☰</button>
+                <div class="champ-recherche">
+                    <input id="champ-recherche" type="search" placeholder="Rechercher (animaux, demandes, adoptants...)" />
+                </div>
+                <div class="bloc-profil">
+                    <div class="profil-infos">
+                        <span class="profil-nom">Admin Shelter</span>
+                        <span class="profil-role">Administrateur</span>
+                    </div>
+                    <div class="profil-photo">AS</div>
+                </div>
+            </header>
+
+            <main class="zone-affichage">
+                <div id="contenu-admin"></div>
+            </main>
+        </div>
+    </div>
+
+    <script src="administration.js"></script>
+</body>
+
+</html>
