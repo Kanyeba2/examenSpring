@@ -164,6 +164,60 @@ DELETE /api/suivis/{id}
 - Le champ d’upload doit s’appeler `file`
 - Le dossier `uploads/` doit exister et être accessible en écriture
 
+## 🧩 Documentation des fichiers JavaScript
+
+### `src/main/resources/static/login.js`
+- Gère le formulaire de connexion administrateur.
+- Envoie un POST JSON vers `/api/adoptants/login` avec `email` et `motDePasse`.
+- Stocke le résultat dans `localStorage` sous `adoptantSession`.
+- Redirige vers `administration.html` en cas de succès.
+- Affiche un message d’erreur en cas d’identifiants invalides ou d’erreur réseau.
+
+### `src/main/resources/static/accueil.js`
+- Contient l’état de l’application d’accueil et les données chargées depuis le backend.
+- Définit des helpers DOM pour récupérer les éléments, afficher/masquer les modales et lire les valeurs de champs.
+- Charge les animaux et les adoptants via `/api/animaux` et `/api/adoptants`.
+- Crée et affiche dynamiquement les cartes d’animaux, les filtres et les listes d’adoptants.
+- Gère le panier de demande d’adoption et l’envoi des demandes via POST `/api/demandes`.
+- Implémente la sélection d’un adoptant et la création d’un nouvel adoptant.
+- Met à jour les panneaux utilisateur selon la session et les demandes de l’adoptant connecté.
+
+### `src/main/resources/static/administration.js`
+- Gère l’interface d’administration côté client.
+- Charge toutes les ressources d’administration : animaux, types, adoptants, demandes, suivis.
+- Calcule des statistiques, met en évidence le menu actif et affiche plusieurs pages administratives.
+- Affiche le tableau de bord, la liste des animaux, des demandes, des adoptants, des suivis et des types.
+- Implémente des modales et formulaires pour modifier les demandes et les animaux.
+- Vérifie la présence d’une session admin valide dans `localStorage` avant de démarrer.
+- Redirige vers `login.html` si l’utilisateur n’est pas authentifié ou si le rôle n’est pas `admin`.
+
+### `src/main/resources/static/app.js`
+- Implémente un mini SPA interne avec rendu conditionnel des pages `home`, `admin`, `about`.
+- Stocke l’état global, gère la navigation et met à jour le document title.
+- Définit des helpers pour afficher les messages et changer de page.
+- Supporte les opérations du panier : ajout, suppression et validation de demandes.
+- Charge les jeux de données principaux depuis plusieurs endpoints REST.
+- Contient des fonctions d’administration simplifiées : création et mise à jour d’animaux.
+
+## 🎨 Documentation des fichiers CSS
+
+### `src/main/resources/static/accueil.css`
+- Définit les styles de l’accueil public : header, hero, grille, cartes et modales.
+- Utilise des variables CSS pour les couleurs, les bordures et la mise en page.
+- Met en forme les cartes d’animaux et les boutons d’action de la page principale.
+- Gère l’affichage des modales de demande et d’adoptant.
+
+### `src/main/resources/static/administration.css`
+- Définit la structure du tableau de bord admin avec une barre latérale fixe et une zone de contenu.
+- Stylise la navigation latérale, le header, les actions et les tableaux.
+- Applique des styles aux formulaires, aux modales et aux indicateurs de statut.
+- Comprend des media queries pour adapter l’interface sur tablettes et mobiles.
+
+### `src/main/resources/static/styles.css`
+- Fournit le style global de l’application : palette de couleurs, typographie, cartes, boutons et layout.
+- Style les composants génériques réutilisables des pages publiques et d’administration.
+- Gère la présentation des listes, des badges et des cartes responsives.
+
 ## 📑 Exemple d’upload d’image
 
 ```bash

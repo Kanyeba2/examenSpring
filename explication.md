@@ -1,14 +1,11 @@
-# Explication du projet
 
+
+### Explication du projet
 Ce fichier explique le rôle et le fonctionnement du code principal du projet. Il se concentre surtout sur les fichiers JavaScript et les points de connexion avec le backend Spring Boot.
 
----
-
-## 1. `src/main/resources/static/app.js`
-
+### 1. src/main/resources/static/app.js
 ### 1.1. État global
-
-```js
+```
 const state = {
     animaux: [],
     types: [],
@@ -20,7 +17,11 @@ const state = {
     message: null,
 };
 ```
-
+state contient les données partagées de l'application.
+animaux, types, adoptants, demandes, suivis sont des tableaux remplis depuis le backend.
+panier stocke les animaux sélectionnés pour une demande d'adoption.
+page indique la page actuelle (home, admin, about).
+message contient le texte à afficher dans la zone de notification<keep same>
 - `state` contient les données partagées de l'application.
 - `animaux`, `types`, `adoptants`, `demandes`, `suivis` sont des tableaux remplis depuis le backend.
 - `panier` stocke les animaux sélectionnés pour une demande d'adoption.
