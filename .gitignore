@@ -53,3 +53,9 @@ explication.md
 # Node (if used)
 node_modules/
 npm-debug.log
+
+# Images ChatGPT
+ChatGPT Image *.png
+
+# fichiers explicatifs
+explication.md
